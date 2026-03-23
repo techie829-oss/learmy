@@ -21,7 +21,7 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile
-    container_name: laravel_app
+    container_name: learmy_app
     restart: unless-stopped
     env_file: .env
     environment:
@@ -61,7 +61,7 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile
-    container_name: laravel_queue
+    container_name: learmy_queue
     restart: unless-stopped
     command: php /var/www/html/artisan queue:work redis --sleep=3 --tries=3 --max-time=3600
     extra_hosts:
@@ -90,7 +90,7 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile
-    container_name: laravel_scheduler
+    container_name: learmy_scheduler
     restart: unless-stopped
     command: >
       sh -c "while true; do
