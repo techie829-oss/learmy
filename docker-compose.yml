@@ -1,0 +1,130 @@
+version: "3.9"
+
+# ─────────────────────────────────────────────────────────────────
+#  Laravel 12 — Production Setup
+#  Reuses EXISTING containers on this server:
+#    DB    → container name: mysql
+#    Redis → container name: vedant_redis
+#
+#  BEFORE STARTING — find the network they share:
+#    docker inspect mysql | grep -A5 '"Networks"'
+#    docker inspect vedant_redis | grep -A5 '"Networks"'
+#  Then set EXTERNAL_NETWORK= in your .env file.
+# ─────────────────────────────────────────────────────────────────
+
+services:
+
+  # ─────────────────────────────────────────
+  # Laravel App  (Nginx + PHP-FPM)
+  # ─────────────────────────────────────────
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: laravel_app
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      APP_ENV: production
+      APP_DEBUG: "false"
+
+      # ── Existing MySQL container ─────────
+      DB_CONNECTION: mysql
+      DB_HOST: mysql            # ← container name
+      DB_PORT: 3306
+
+      # ── Existing Redis container ─────────
+      REDIS_HOST: vedant_redis  # ← container name
+      REDIS_PORT: 6379
+
+      CACHE_DRIVER: redis
+      SESSION_DRIVER: redis
+      QUEUE_CONNECTION: redis
+      FILESYSTEM_DISK: local
+    ports:
+      - "${APP_PORT:-8090}:80"
+    volumes:
+      # Laravel storage/ — uploads, logs, sessions, views
+      - storage_data:/var/www/html/storage
+      # Compiled config/route/view cache
+      - bootstrap_cache:/var/www/html/bootstrap/cache
+    networks:
+      - laravel_net
+      - external_net    # must reach mysql + vedant_redis
+
+  # ─────────────────────────────────────────
+  # Queue Worker
+  # ─────────────────────────────────────────
+  queue:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: laravel_queue
+    restart: unless-stopped
+    command: php /var/www/html/artisan queue:work redis --sleep=3 --tries=3 --max-time=3600
+    env_file: .env
+    environment:
+      APP_ENV: production
+      DB_CONNECTION: mysql
+      DB_HOST: mysql
+      DB_PORT: 3306
+      REDIS_HOST: vedant_redis
+      REDIS_PORT: 6379
+      QUEUE_CONNECTION: redis
+    volumes:
+      - storage_data:/var/www/html/storage
+    networks:
+      - laravel_net
+      - external_net
+    depends_on:
+      - app
+
+  # ─────────────────────────────────────────
+  # Task Scheduler
+  # ─────────────────────────────────────────
+  scheduler:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: laravel_scheduler
+    restart: unless-stopped
+    command: >
+      sh -c "while true; do
+        php /var/www/html/artisan schedule:run --verbose --no-interaction;
+        sleep 60;
+      done"
+    env_file: .env
+    environment:
+      APP_ENV: production
+      DB_CONNECTION: mysql
+      DB_HOST: mysql
+      DB_PORT: 3306
+      REDIS_HOST: vedant_redis
+      REDIS_PORT: 6379
+    volumes:
+      - storage_data:/var/www/html/storage
+    networks:
+      - laravel_net
+      - external_net
+    depends_on:
+      - app
+
+# ─────────────────────────────────────────
+# Persistent volumes
+# ─────────────────────────────────────────
+volumes:
+  storage_data:        # /var/www/html/storage  — uploads, logs, sessions
+    driver: local
+  bootstrap_cache:     # /var/www/html/bootstrap/cache
+    driver: local
+
+# ─────────────────────────────────────────
+# Networks
+# ─────────────────────────────────────────
+networks:
+  laravel_net:
+    driver: bridge
+
+  external_net:
+    external: true
+    name: ${EXTERNAL_NETWORK}   # e.g. opt_default  — set in .env
