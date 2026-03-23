@@ -52,7 +52,8 @@ services:
       - bootstrap_cache:/var/www/html/bootstrap/cache
     networks:
       - laravel_net
-      - external_net    # must reach mysql + vedant_redis
+      - mysql_net
+      - redis_net
 
   # ─────────────────────────────────────────
   # Queue Worker
@@ -79,7 +80,8 @@ services:
       - storage_data:/var/www/html/storage
     networks:
       - laravel_net
-      - external_net
+      - mysql_net
+      - redis_net
     depends_on:
       - app
 
@@ -111,7 +113,8 @@ services:
       - storage_data:/var/www/html/storage
     networks:
       - laravel_net
-      - external_net
+      - mysql_net
+      - redis_net
     depends_on:
       - app
 
@@ -131,6 +134,10 @@ networks:
   laravel_net:
     driver: bridge
 
-  external_net:
+  mysql_net:
     external: true
     name: mysql_default
+
+  redis_net:
+    external: true
+    name: vedant_billing_vedant_network
