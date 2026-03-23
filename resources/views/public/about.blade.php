@@ -27,7 +27,7 @@
         <div class="container px-4 md:px-6">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-center mb-24 md:mb-32">
                 <div class="group relative rounded-[2.5rem] md:rounded-[4rem] overflow-hidden gold-border h-[400px] md:h-[600px] transition-all duration-1000 shadow-2xl">
-                    <img src="{{ asset('public/learmyimages/learmy6.jpeg') }}" alt="Our Institute" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[2s]">
+                    <img src="{{ asset('learmyimages/learmy6.jpeg') }}" alt="Our Institute" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[2s]">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                 </div>
                 
@@ -80,7 +80,7 @@
                 <!-- Aman -->
                 <div class="group text-center" data-aos="fade-up">
                     <div class="relative w-full aspect-[4/5] rounded-[3rem] overflow-hidden mb-8 gold-border-thick shadow-2xl transition-all duration-700 group-hover:shadow-accent/20">
-                        <img src="{{ asset('public/learmyimages/amanowner.jfif') }}" alt="Aman - Owner" class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110">
+                        <img src="{{ asset('learmyimages/amanowner.jfif') }}" alt="Aman - Owner" class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-100 transition-opacity"></div>
                         <div class="absolute bottom-8 left-0 right-0 p-6">
                             <h4 class="text-3xl font-serif font-bold text-white mb-2">Aman</h4>
@@ -92,7 +92,7 @@
                 <!-- Pranshi -->
                 <div class="group text-center" data-aos="fade-up" data-aos-delay="200">
                     <div class="relative w-full aspect-[4/5] rounded-[3rem] overflow-hidden mb-8 gold-border-thick shadow-2xl transition-all duration-700 group-hover:shadow-accent/20">
-                        <img src="{{ asset('public/learmyimages/pranshiowner2.jfif') }}" alt="Pranshi - Owner" class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110">
+                        <img src="{{ asset('learmyimages/pranshiowner2.jfif') }}" alt="Pranshi - Owner" class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-100 transition-opacity"></div>
                         <div class="absolute bottom-8 left-0 right-0 p-6">
                             <h4 class="text-3xl font-serif font-bold text-white mb-2">Pranshi</h4>

@@ -45,7 +45,7 @@
                 <div class="w-full lg:w-2/5 xl:w-[45%] relative mt-8 lg:mt-0" data-aos="zoom-in" data-aos-delay="600">
                     <div class="relative rounded-tr-[3rem] md:rounded-tr-[5rem] rounded-bl-[3rem] md:rounded-bl-[5rem] rounded-tl-xl md:rounded-tl-2xl rounded-br-xl md:rounded-br-2xl overflow-hidden gold-border-thick shadow-2xl bg-black">
                         <video autoplay muted loop playsinline class="w-full h-[300px] md:h-[400px] lg:h-[450px] xl:h-[600px] object-contain transition-transform duration-[2s] hover:scale-105 bg-black/90">
-                            <source src="{{ asset('public/learmyimages/learmy1.mp4') }}" type="video/mp4">
+                            <source src="{{ asset('learmyimages/learmy1.mp4') }}" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none"></div>
@@ -62,7 +62,7 @@
                 <div class="w-full lg:w-1/2 relative">
                     <div class="relative z-10">
                         <div class="relative rounded-[2.5rem] md:rounded-[4rem] overflow-hidden shadow-2xl gold-border-thick">
-                            <img src="{{ asset('public/learmyimages/laermy10.jpeg') }}" alt="Students learning music and science at Learmy Educoach Institute" loading="lazy" class="w-full hover:scale-105 transition-all duration-[1.5s]">
+                            <img src="{{ asset('learmyimages/laermy10.jpeg') }}" alt="Students learning music and science at Learmy Educoach Institute" loading="lazy" class="w-full hover:scale-105 transition-all duration-[1.5s]">
                         </div>
                         
                         <!-- Floating metrics -->
@@ -135,7 +135,7 @@
                 @foreach($featuredCourses as $course)
                     <div class="@if($themeMode == 'dark') bg-[#111111] @else bg-white @endif rounded-[2rem] md:rounded-[2.5rem] overflow-hidden group transition-all duration-700 gold-border shadow-sm hover:translate-y-[-10px] hover:shadow-[0_40px_80px_-20px_rgba(212,175,55,0.15)] flex flex-col h-full">
                         <div class="relative h-60 md:h-72 overflow-hidden">
-                            <img src="{{ $course->image_path ? asset($course->image_path) : asset('public/learmyimages/leramy5.jpeg') }}" alt="{{ $course->title }}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-[1s]">
+                            <img src="{{ $course->image_path ? asset($course->image_path) : asset('learmyimages/leramy5.jpeg') }}" alt="{{ $course->title }}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-[1s]">
                             <div class="absolute top-4 left-4 md:top-6 md:left-6">
                                 <span class="bg-black/80 backdrop-blur-md px-3 py-1 md:px-4 md:py-1.5 rounded-full text-[9px] md:text-[10px] font-black text-accent uppercase tracking-[0.2em] border border-accent/20">{{ $course->category }}</span>
                             </div>
@@ -177,7 +177,7 @@
                 <!-- Video 1 -->
                 <div class="relative rounded-[2rem] overflow-hidden gold-border-thin shadow-xl aspect-[4/5] md:aspect-video group bg-black" data-aos="fade-up">
                     <video muted loop playsinline class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" onmouseover="this.play()" onmouseout="this.pause()">
-                        <source src="{{ asset('public/learmyimages/laermy2.mp4') }}" type="video/mp4">
+                        <source src="{{ asset('learmyimages/laermy2.mp4') }}" type="video/mp4">
                     </video>
                     <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-all pointer-events-none"></div>
                     <div class="absolute bottom-6 left-6 flex items-center gap-3">
@@ -191,7 +191,7 @@
                 <!-- Video 2 -->
                 <div class="relative rounded-[2rem] overflow-hidden gold-border-thin shadow-xl aspect-[4/5] md:aspect-video group bg-black" data-aos="fade-up" data-aos-delay="100">
                     <video muted loop playsinline class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" onmouseover="this.play()" onmouseout="this.pause()">
-                        <source src="{{ asset('public/learmyimages/laermy3.mp4') }}" type="video/mp4">
+                        <source src="{{ asset('learmyimages/laermy3.mp4') }}" type="video/mp4">
                     </video>
                     <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-all pointer-events-none"></div>
                     <div class="absolute bottom-6 left-6 flex items-center gap-3">
@@ -204,14 +204,14 @@
 
                 <!-- Image 1 -->
                 <div class="relative rounded-[2rem] overflow-hidden gold-border-thin shadow-xl aspect-video group" data-aos="fade-up" data-aos-delay="200">
-                    <img src="{{ asset('public/learmyimages/laermy8.jpeg') }}" alt="Learmy Institute activity" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1.5s]">
+                    <img src="{{ asset('learmyimages/laermy8.jpeg') }}" alt="Learmy Institute activity" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1.5s]">
                     <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-all"></div>
                 </div>
 
                 <!-- Video 3 -->
                 <div class="relative rounded-[2rem] overflow-hidden gold-border-thin shadow-xl aspect-[4/5] md:aspect-video group bg-black" data-aos="fade-up">
                     <video muted loop playsinline class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" onmouseover="this.play()" onmouseout="this.pause()">
-                        <source src="{{ asset('public/learmyimages/laermy4.mp4') }}" type="video/mp4">
+                        <source src="{{ asset('learmyimages/laermy4.mp4') }}" type="video/mp4">
                     </video>
                     <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-all pointer-events-none"></div>
                 </div>
@@ -219,7 +219,7 @@
                 <!-- Video 4 -->
                 <div class="relative rounded-[2rem] overflow-hidden gold-border-thin shadow-xl aspect-[4/5] md:aspect-video group bg-black" data-aos="fade-up" data-aos-delay="100">
                     <video muted loop playsinline class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" onmouseover="this.play()" onmouseout="this.pause()">
-                        <source src="{{ asset('public/learmyimages/laermy9.mp4') }}" type="video/mp4">
+                        <source src="{{ asset('learmyimages/laermy9.mp4') }}" type="video/mp4">
                     </video>
                     <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-all pointer-events-none"></div>
                 </div>
@@ -349,7 +349,7 @@
             <div class="relative bg-[#0A0A0A] p-10 md:p-24 lg:p-32 rounded-[3rem] md:rounded-[5rem] overflow-hidden shadow-2xl gold-border-thick transition-all duration-1000 group">
                 <!-- Sophisticated background visual -->
                 <div class="absolute inset-0 z-0 overflow-hidden">
-                    <img src="{{ asset('public/learmyimages/laermy7.jpeg') }}" alt="Texture" class="w-full h-full object-cover opacity-50 transition-transform duration-[3s] group-hover:scale-110">
+                    <img src="{{ asset('learmyimages/laermy7.jpeg') }}" alt="Texture" class="w-full h-full object-cover opacity-50 transition-transform duration-[3s] group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-br from-black via-black/95 to-accent/20 mix-blend-overlay"></div>
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40"></div>
                 </div>

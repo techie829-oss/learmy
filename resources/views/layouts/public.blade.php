@@ -17,14 +17,14 @@
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:title" content="@yield('title', config('app.name', 'Learmy Educoach Institute'))">
     <meta property="og:description" content="@yield('meta_description', 'Learmy Educoach Institute of Music and Academics - Premium education for music and academic excellence.')">
-    <meta property="og:image" content="{{ asset('public/logo.jpeg') }}">
+    <meta property="og:image" content="{{ asset('logo.jpeg') }}">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="{{ url()->current() }}">
     <meta property="twitter:title" content="@yield('title', config('app.name', 'Learmy Educoach Institute'))">
     <meta property="twitter:description" content="@yield('meta_description', 'Learmy Educoach Institute of Music and Academics - Premium education for music and academic excellence.')">
-    <meta property="twitter:image" content="{{ asset('public/logo.jpeg') }}">
+    <meta property="twitter:image" content="{{ asset('logo.jpeg') }}">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -246,7 +246,7 @@
         <div class="container flex justify-between items-center py-3 md:py-4">
             <a href="{{ route('home') }}" class="flex items-center group transition-transform duration-300 hover:scale-105">
                 <div class="relative overflow-hidden rounded-lg md:rounded-xl bg-white p-1 md:p-1.5 shadow-sm gold-border">
-                    <img src="{{ asset('public/logo.jpeg') }}" alt="LEARMY" class="h-10 md:h-14 w-auto object-contain">
+                    <img src="{{ asset('logo.jpeg') }}" alt="LEARMY" class="h-10 md:h-14 w-auto object-contain">
                 </div>
             </a>
             
@@ -284,7 +284,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16" id="footer-grid">
                 <div>
                     <div class="mb-8 group">
-                    <img src="{{ asset('public/logo.jpeg') }}" alt="LEARMY" class="h-16 md:h-24 w-auto object-contain transition-transform duration-500 group-hover:scale-105">
+                    <img src="{{ asset('logo.jpeg') }}" alt="LEARMY" class="h-16 md:h-24 w-auto object-contain transition-transform duration-500 group-hover:scale-105">
                         <div class="mt-6">
                             <div class="w-32 h-1 bg-accent rounded-full mb-3"></div>
                             <span class="text-lg uppercase tracking-[0.4em] @if($themeMode == 'dark') text-white @else text-gray-900 @endif font-black">Educoach Institute</span>
@@ -482,7 +482,7 @@
          <div class="flex flex-col h-full">
             <!-- Mobile Menu Header -->
             <div class="flex justify-between items-center px-6 py-4 border-b gold-border">
-                <img src="{{ asset('public/logo.jpeg') }}" alt="LEARMY" class="h-10 w-auto">
+                <img src="{{ asset('logo.jpeg') }}" alt="LEARMY" class="h-10 w-auto">
                 <button id="close-menu-btn" class="p-2 text-accent">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>

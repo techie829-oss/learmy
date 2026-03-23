@@ -34,7 +34,7 @@
         <aside class="w-64 bg-dark text-white shrink-0 overflow-y-auto hidden md:block">
             <div class="p-6 border-b border-gray-800/50">
                 <a href="{{ route('home') }}" class="flex items-center justify-center">
-                    <img src="{{ asset('public/logo.jpeg') }}" alt="LEARMY" class="h-20 w-auto transition-transform hover:scale-105">
+                    <img src="{{ asset('logo.jpeg') }}" alt="LEARMY" class="h-20 w-auto transition-transform hover:scale-105">
                 </a>
             </div>
             
