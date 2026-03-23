@@ -49,7 +49,7 @@ return [
 
         'media' => [
             'driver' => 'local',
-            'root' => base_path('media'),
+            'root' => public_path('media'),
             'url' => rtrim(env('APP_URL', 'http://localhost'), '/').'/media',
             'visibility' => 'public',
             'throw' => false,

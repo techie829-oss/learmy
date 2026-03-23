@@ -22,10 +22,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        if (Schema::hasTable('settings')) {
-            $themeMode = Setting::where('key', 'theme_mode')->first()->value ?? 'light';
-            View::share('themeMode', $themeMode);
-        } else {
+        try {
+            if (Schema::hasTable('settings')) {
+                $themeMode = Setting::where('key', 'theme_mode')->first()->value ?? 'light';
+                View::share('themeMode', $themeMode);
+            } else {
+                View::share('themeMode', 'light');
+            }
+        } catch (\Exception $e) {
             View::share('themeMode', 'light');
         }
     }
