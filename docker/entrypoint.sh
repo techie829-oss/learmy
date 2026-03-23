@@ -50,6 +50,10 @@ if [ $TRY_COUNT -eq $MAX_TRIES ]; then
 fi
 echo "Database connection established."
 
+# ── Run post-install scripts ──────────────────────────────────
+echo "Running post-install scripts..."
+php artisan package:discover --ansi
+
 # ── Run migrations ────────────────────────────────────────────
 echo "Running migrations..."
 # Laravel 11+ automatically prompts to create the database if missing.
