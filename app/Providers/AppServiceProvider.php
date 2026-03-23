@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\View;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Schema;
 
+use Illuminate\Support\Facades\URL;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -22,6 +24,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        if (config('app.env') === 'production') {
+            URL::forceScheme('https');
+        }
+
         try {
             if (Schema::hasTable('settings')) {
                 $themeMode = Setting::where('key', 'theme_mode')->first()->value ?? 'light';
