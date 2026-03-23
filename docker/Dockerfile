@@ -1,3 +1,12 @@
+# Stage 1: Build Assets
+FROM node:20-alpine AS assets
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+
+# Stage 2: PHP Application
 FROM php:8.3-fpm
 
 # Install system dependencies
@@ -38,6 +47,9 @@ WORKDIR /var/www/html
 
 # Copy application files
 COPY . .
+
+# Copy built assets from stage 1
+COPY --from=assets /app/public/build ./public/build
 
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts
