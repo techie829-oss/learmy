@@ -9,7 +9,7 @@ version: "3.9"
 #  BEFORE STARTING — find the network they share:
 #    docker inspect mysql | grep -A5 '"Networks"'
 #    docker inspect vedant_redis | grep -A5 '"Networks"'
-#  Then set EXTERNAL_NETWORK= in your .env file.
+#  Then set database credentials in your .env file.
 # ─────────────────────────────────────────────────────────────────
 
 services:
@@ -42,7 +42,9 @@ services:
       QUEUE_CONNECTION: redis
       FILESYSTEM_DISK: local
     ports:
-      - "${APP_PORT:-8090}:80"
+      - "127.0.0.1:8090:80"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     volumes:
       # Laravel storage/ — uploads, logs, sessions, views
       - storage_data:/var/www/html/storage
@@ -62,6 +64,8 @@ services:
     container_name: laravel_queue
     restart: unless-stopped
     command: php /var/www/html/artisan queue:work redis --sleep=3 --tries=3 --max-time=3600
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     env_file: .env
     environment:
       APP_ENV: production
@@ -93,6 +97,8 @@ services:
         php /var/www/html/artisan schedule:run --verbose --no-interaction;
         sleep 60;
       done"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     env_file: .env
     environment:
       APP_ENV: production
@@ -127,4 +133,4 @@ networks:
 
   external_net:
     external: true
-    name: ${EXTERNAL_NETWORK}   # e.g. opt_default  — set in .env
+    name: mysql_default
