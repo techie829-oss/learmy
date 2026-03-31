@@ -311,6 +311,7 @@
                         <li><a href="{{ route('faculty') }}" class="hover:text-accent">Our Trainers</a></li>
                         <li><a href="{{ route('events') }}" class="hover:text-accent">Upcoming Workshops</a></li>
                         <li><a href="{{ route('blog') }}" class="hover:text-accent">Our Blog</a></li>
+                        <li><a href="{{ route('payment') }}" class="hover:text-accent">Payment Details</a></li>
                     </ul>
                 </div>
                 
@@ -496,8 +497,9 @@
                         ['Our Courses', route('courses')],
                         ['Meet Faculty', route('faculty')],
                         ['Gallery', route('gallery')],
-                        ['Latest Events', route('events')],
+                        ['Events', route('events')],
                         ['Testimonials', route('testimonials')],
+                        ['Payment Details', route('payment')],
                         ['Contact Us', route('contact')]
                     ];
                 @endphp

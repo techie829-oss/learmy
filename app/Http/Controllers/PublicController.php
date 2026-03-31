@@ -121,5 +121,10 @@ class PublicController extends Controller
 
         return back()->with('success', 'Thank you for your enquiry. We will get back to you soon!');
     }
+
+    public function payment()
+    {
+        return view('public.payment');
+    }
 }
 

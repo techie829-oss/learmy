@@ -76,28 +76,40 @@
                 <h3 class="fluid-text-h2 font-serif font-bold @if($themeMode == 'dark') text-white @else text-gray-900 @endif leading-tight">Meet Our <span class="text-gradient italic font-normal">Founders</span></h3>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 max-w-6xl mx-auto px-4">
-                <!-- Aman -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 max-w-6xl mx-auto px-4">
+                <!-- Pranshi -->
                 <div class="group text-center" data-aos="fade-up">
-                    <div class="relative w-full aspect-[4/5] rounded-[3rem] overflow-hidden mb-8 gold-border-thick shadow-2xl transition-all duration-700 group-hover:shadow-accent/20">
-                        <img src="{{ asset('learmyimages/amanowner.jfif') }}" alt="Aman - Owner" class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-100 transition-opacity"></div>
-                        <div class="absolute bottom-8 left-0 right-0 p-6">
-                            <h4 class="text-3xl font-serif font-bold text-white mb-2">Aman</h4>
-                            <p class="text-accent font-black uppercase tracking-[0.3em] text-[10px]">Founder & Director</p>
+                    <div class="relative w-full aspect-[4/5] rounded-[3.5rem] overflow-hidden mb-10 gold-border-thick shadow-2xl transition-all duration-700 group-hover:shadow-accent/30 group-hover:translate-y-[-10px]">
+                        <img src="{{ asset('learmyimages/pranshiowner2.jfif') }}" alt="Pranshi Gupta - Founder Director" class="w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-8 md:p-10 text-center">
+                            <h4 class="text-3xl md:text-4xl font-serif font-bold text-white mb-2">Pranshi Gupta</h4>
+                            <p class="text-accent font-black uppercase tracking-[0.3em] text-[10px] md:text-xs">Founder Director</p>
                         </div>
+                    </div>
+                    <div class="px-6">
+                        <p class="text-lg font-serif italic text-accent mb-4">"Architect of Academic Growth"</p>
+                        <p class="@if($themeMode == 'dark') text-gray-400 @else text-gray-600 @endif leading-relaxed font-light text-base">
+                            The driving force behind our academic excellence, Pranshi specializes in holistic coaching and academic strategy. She ensures every student at Learmy achieves their highest potential through disciplined guidance.
+                        </p>
                     </div>
                 </div>
 
-                <!-- Pranshi -->
+                <!-- Aman -->
                 <div class="group text-center" data-aos="fade-up" data-aos-delay="200">
-                    <div class="relative w-full aspect-[4/5] rounded-[3rem] overflow-hidden mb-8 gold-border-thick shadow-2xl transition-all duration-700 group-hover:shadow-accent/20">
-                        <img src="{{ asset('learmyimages/pranshiowner2.jfif') }}" alt="Pranshi - Owner" class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-100 transition-opacity"></div>
-                        <div class="absolute bottom-8 left-0 right-0 p-6">
-                            <h4 class="text-3xl font-serif font-bold text-white mb-2">Pranshi</h4>
-                            <p class="text-accent font-black uppercase tracking-[0.3em] text-[10px]">Founder & Managing Director</p>
+                    <div class="relative w-full aspect-[4/5] rounded-[3.5rem] overflow-hidden mb-10 gold-border-thick shadow-2xl transition-all duration-700 group-hover:shadow-accent/30 group-hover:translate-y-[-10px]">
+                        <img src="{{ asset('learmyimages/amanowner.jfif') }}" alt="Aman Gupta - Director of Academics" class="w-full h-full object-cover transition-transform duration-[2.5s] group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-8 md:p-10 text-center">
+                            <h4 class="text-3xl md:text-4xl font-serif font-bold text-white mb-2">Aman Gupta</h4>
+                            <p class="text-accent font-black uppercase tracking-[0.3em] text-[10px] md:text-xs">Director of Academics & Co-founder</p>
                         </div>
+                    </div>
+                    <div class="px-6">
+                        <p class="text-lg font-serif italic text-accent mb-4">"The Rhythm of Success"</p>
+                        <p class="@if($themeMode == 'dark') text-gray-400 @else text-gray-600 @endif leading-relaxed font-light text-base">
+                            With a profound expertise in professional music, Aman leads our music department, specializing in Keyboard, Piano, and Vocal training. His vision is to harmonize emotional intelligence with musical mastery.
+                        </p>
                     </div>
                 </div>
             </div>

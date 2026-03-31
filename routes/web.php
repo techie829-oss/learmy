@@ -27,6 +27,7 @@ Route::get('/blog/{slug}', [PublicController::class, 'blogShow'])->name('blog.sh
 Route::get('/testimonials', [PublicController::class, 'testimonials'])->name('testimonials');
 Route::get('/contact', [PublicController::class, 'contact'])->name('contact');
 Route::post('/contact', [PublicController::class, 'contactStore'])->name('contact.store');
+Route::get('/payment', [PublicController::class, 'payment'])->name('payment');
 
 Route::redirect('/admin', '/login');
 Route::redirect('/admi', '/login');

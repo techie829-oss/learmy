@@ -129,6 +129,24 @@
             </div>
         </div>
     </section>
+    
+    <!-- Payment Link Section -->
+    <section class="py-12 md:py-20 @if($themeMode == 'dark') bg-black @else bg-surface @endif border-t @if($themeMode == 'dark') border-gray-900 @else border-gray-100 @endif overflow-hidden relative">
+        <div class="container px-4 md:px-6">
+            <div class="relative bg-gradient-to-r from-accent/10 via-accent/5 to-transparent p-8 md:p-12 rounded-[2.5rem] border border-accent/20 flex flex-col md:flex-row items-center justify-between gap-8 group hover:border-accent/40 transition-all duration-500 shadow-sm">
+                <div class="max-w-xl">
+                    <h3 class="text-2xl md:text-3xl font-serif font-bold @if($themeMode == 'dark') text-white @else text-gray-900 @endif mb-4">Direct Enrollment <span class="text-gradient">Payment</span></h3>
+                    <p class="text-sm md:text-base @if($themeMode == 'dark') text-gray-400 @else text-gray-600 @endif leading-relaxed">Ready to join our elite family? You can make a direct bank transfer or use our secure QR code for instant session bookings.</p>
+                </div>
+                <div class="shrink-0">
+                    <a href="{{ route('payment') }}" class="gold-button font-black py-4 px-10 rounded-full text-sm uppercase tracking-widest flex items-center gap-3">
+                        View Payment Methods
+                        <svg class="w-4 h-4 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Map Section -->
     <section class="h-[600px] w-full border-t @if($themeMode == 'dark') border-accent/20 @else border-gray-100 @endif">
