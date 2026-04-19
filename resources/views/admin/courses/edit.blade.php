@@ -24,10 +24,16 @@
 
                 <div class="space-y-4">
                     <label class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 block ml-2">Category</label>
-                    <select name="category" required class="w-full bg-gray-50 border-0 border-b-2 border-gray-200 focus:border-accent p-4 text-gray-900 outline-none transition-colors rounded-2xl appearance-none">
-                        <option value="music" {{ $course->category == 'music' ? 'selected' : '' }}>Music Programs</option>
-                        <option value="academic" {{ $course->category == 'academic' ? 'selected' : '' }}>Academic Coaching</option>
+                    <select name="category_id" required class="w-full bg-gray-50 border-0 border-b-2 border-gray-200 focus:border-accent p-4 text-gray-900 outline-none transition-colors rounded-2xl appearance-none">
+                        @foreach($categories as $category)
+                            <option value="{{ $category->id }}" {{ $course->category_id == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                        @endforeach
                     </select>
+                </div>
+
+                <div class="space-y-4">
+                    <label class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 block ml-2">Display Order</label>
+                    <input type="number" name="order" value="{{ old('order', $course->order) }}" class="w-full bg-gray-50 border-0 border-b-2 border-gray-200 focus:border-accent p-4 text-gray-900 outline-none transition-colors rounded-2xl" placeholder="0">
                 </div>
             </div>
 
@@ -43,7 +49,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                 <div class="space-y-4">
-                    <label class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 block ml-2">Course Fee (₹)</label>
+                    <label class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 block ml-2">Base Fee (Fallback ₹)</label>
                     <input type="number" name="price" value="{{ old('price', $course->price) }}" class="w-full bg-gray-50 border-0 border-b-2 border-gray-200 focus:border-accent p-4 text-gray-900 outline-none transition-colors rounded-2xl" placeholder="9900.00">
                 </div>
 
@@ -60,6 +66,25 @@
                             <span class="text-xs text-gray-500 font-bold uppercase tracking-widest">Update to change image Max 2MB</span>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="space-y-4">
+                    <label class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 block ml-2">Indian Online (₹)</label>
+                    <input type="number" step="0.01" name="indian_online_fee" value="{{ old('indian_online_fee', $course->indian_online_fee) }}" class="w-full bg-gray-50 border-0 border-b-2 border-gray-200 focus:border-accent p-4 text-gray-900 outline-none transition-colors rounded-2xl" placeholder="₹">
+                </div>
+                <div class="space-y-4">
+                    <label class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 block ml-2">Indian Offline (₹)</label>
+                    <input type="number" step="0.01" name="indian_offline_fee" value="{{ old('indian_offline_fee', $course->indian_offline_fee) }}" class="w-full bg-gray-50 border-0 border-b-2 border-gray-200 focus:border-accent p-4 text-gray-900 outline-none transition-colors rounded-2xl" placeholder="₹">
+                </div>
+                <div class="space-y-4">
+                    <label class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 block ml-2">Intl. Online ($)</label>
+                    <input type="number" step="0.01" name="intl_online_fee" value="{{ old('intl_online_fee', $course->intl_online_fee) }}" class="w-full bg-gray-50 border-0 border-b-2 border-gray-200 focus:border-accent p-4 text-gray-900 outline-none transition-colors rounded-2xl" placeholder="$">
+                </div>
+                <div class="space-y-4">
+                    <label class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 block ml-2">Intl. Offline ($)</label>
+                    <input type="number" step="0.01" name="intl_offline_fee" value="{{ old('intl_offline_fee', $course->intl_offline_fee) }}" class="w-full bg-gray-50 border-0 border-b-2 border-gray-200 focus:border-accent p-4 text-gray-900 outline-none transition-colors rounded-2xl" placeholder="$">
                 </div>
             </div>
 

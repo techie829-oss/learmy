@@ -15,7 +15,14 @@ class PublicController extends Controller
 {
     public function index()
     {
-        $featuredCourses = Course::where('is_featured', true)->take(3)->get();
+        $featuredCourses = Course::select('courses.*')
+            ->join('categories', 'courses.category_id', '=', 'categories.id')
+            ->where('courses.is_featured', true)
+            ->orderBy('categories.order', 'asc')
+            ->orderBy('courses.order', 'asc')
+            ->with('category')
+            ->take(3)
+            ->get();
         $upcomingEvents = Event::where('event_date', '>=', now())->orderBy('event_date', 'asc')->take(3)->get();
         $testimonials = Testimonial::orderBy('created_at', 'desc')->take(5)->get();
         $recentBlogs = Blog::orderBy('created_at', 'desc')->take(3)->get();
@@ -25,26 +32,29 @@ class PublicController extends Controller
 
     public function about()
     {
-        return view('public.about');
+        $faculties = Faculty::all();
+        return view('public.about', compact('faculties'));
     }
 
     public function courses(Request $request)
     {
-        $query = Course::query();
+        $courses = Course::select('courses.*')
+            ->join('categories', 'courses.category_id', '=', 'categories.id')
+            ->orderBy('categories.order', 'asc')
+            ->orderBy('courses.order', 'asc')
+            ->orderBy('courses.title', 'asc')
+            ->with('category')
+            ->paginate(12)
+            ->withQueryString();
+            
+        $categories = \App\Models\Category::orderBy('order', 'asc')->get();
 
-        if ($request->filled('category') && in_array($request->category, ['music', 'academic'])) {
-            $query->where('category', $request->category);
-        }
-
-        $courses = $query->latest()->paginate(9)->withQueryString();
-        $activeCategory = $request->get('category', 'all');
-
-        return view('public.courses', compact('courses', 'activeCategory'));
+        return view('public.courses', compact('courses', 'categories'));
     }
 
     public function courseShow($slug)
     {
-        $course = Course::where('slug', $slug)->firstOrFail();
+        $course = Course::with('category')->where('slug', $slug)->firstOrFail();
         return view('public.course-details', compact('course'));
     }
 

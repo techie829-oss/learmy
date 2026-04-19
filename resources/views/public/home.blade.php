@@ -44,8 +44,8 @@
                 
                 <div class="w-full lg:w-2/5 xl:w-[45%] relative mt-8 lg:mt-0" data-aos="zoom-in" data-aos-delay="600">
                     <div class="relative rounded-tr-[3rem] md:rounded-tr-[5rem] rounded-bl-[3rem] md:rounded-bl-[5rem] rounded-tl-xl md:rounded-tl-2xl rounded-br-xl md:rounded-br-2xl overflow-hidden gold-border-thick shadow-2xl bg-black">
-                        <video autoplay muted loop playsinline class="w-full h-[300px] md:h-[400px] lg:h-[450px] xl:h-[600px] object-contain transition-transform duration-[2s] hover:scale-105 bg-black/90">
-                            <source src="{{ asset('learmyimages/learmy1.mp4') }}" type="video/mp4">
+                        <video autoplay muted loop playsinline class="w-full h-[300px] md:h-[400px] lg:h-[450px] xl:h-[600px] object-cover transition-transform duration-[2s] hover:scale-105 bg-black/90">
+                            <source src="{{ asset('banner.mp4') }}" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none"></div>
@@ -137,7 +137,7 @@
                         <div class="relative h-60 md:h-72 overflow-hidden">
                             <img src="{{ $course->image_path ? asset($course->image_path) : asset('learmyimages/leramy5.jpeg') }}" alt="{{ $course->title }}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-all duration-[1s]">
                             <div class="absolute top-4 left-4 md:top-6 md:left-6">
-                                <span class="bg-black/80 backdrop-blur-md px-3 py-1 md:px-4 md:py-1.5 rounded-full text-[9px] md:text-[10px] font-black text-accent uppercase tracking-[0.2em] border border-accent/20">{{ $course->category }}</span>
+                                <span class="bg-black/80 backdrop-blur-md px-3 py-1 md:px-4 md:py-1.5 rounded-full text-[9px] md:text-[10px] font-black text-accent uppercase tracking-[0.2em] border border-accent/20">{{ $course->category->name ?? 'Course' }}</span>
                             </div>
                         </div>
                     <div class="p-8 md:p-10 flex-grow relative" data-aos="fade-up">

@@ -29,17 +29,18 @@
             <!-- Category Tabs -->
             <div class="flex flex-wrap md:flex-row justify-center gap-3 md:gap-6 mb-12 md:mb-20 px-4">
                 <button onclick="filterCourses('all')" id="tab-all" class="course-tab active-tab px-6 md:px-10 py-3 md:py-4 rounded-full bg-accent text-primary-foreground font-black uppercase tracking-widest text-[10px] md:text-sm shadow-xl transition-all hover:scale-105 active:scale-95 whitespace-nowrap">All Programs</button>
-                <button onclick="filterCourses('music')" id="tab-music" class="course-tab px-6 md:px-10 py-3 md:py-4 rounded-full @if($themeMode == 'dark') bg-black/50 border-gray-800 @else bg-gray-50 border-gray-200 @endif border @if($themeMode == 'dark') text-gray-400 @else text-gray-600 @endif font-black uppercase tracking-widest text-[10px] md:text-sm hover:border-accent hover:text-accent transition-all hover:scale-105 active:scale-95 whitespace-nowrap">Music Mastery</button>
-                <button onclick="filterCourses('academic')" id="tab-academic" class="course-tab px-6 md:px-10 py-3 md:py-4 rounded-full @if($themeMode == 'dark') bg-black/50 border-gray-800 @else bg-gray-50 border-gray-200 @endif border @if($themeMode == 'dark') text-gray-400 @else text-gray-600 @endif font-black uppercase tracking-widest text-[10px] md:text-sm hover:border-accent hover:text-accent transition-all hover:scale-105 active:scale-95 whitespace-nowrap">Academic Success</button>
+                @foreach($categories as $category)
+                    <button onclick="filterCourses('{{ $category->slug }}')" id="tab-{{ $category->slug }}" class="course-tab px-6 md:px-10 py-3 md:py-4 rounded-full @if($themeMode == 'dark') bg-black/50 border-gray-800 @else bg-gray-50 border-gray-200 @endif border @if($themeMode == 'dark') text-gray-400 @else text-gray-600 @endif font-black uppercase tracking-widest text-[10px] md:text-sm hover:border-accent hover:text-accent transition-all hover:scale-105 active:scale-95 whitespace-nowrap">{{ $category->name }}</button>
+                @endforeach
             </div>
 
             <div id="courses-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 px-4 md:px-0">
                 @foreach($courses as $course)
-                    <div class="course-card @if($themeMode == 'dark') bg-black/20 @else bg-white @endif rounded-[2rem] md:rounded-[2.5rem] overflow-hidden group transition-all duration-700 gold-border flex flex-col h-full relative shadow-sm hover:translate-y-[-10px] hover:shadow-2xl" data-category="{{ $course->category }}">
+                    <div class="course-card @if($themeMode == 'dark') bg-black/20 @else bg-white @endif rounded-[2rem] md:rounded-[2.5rem] overflow-hidden group transition-all duration-700 gold-border flex flex-col h-full relative shadow-sm hover:translate-y-[-10px] hover:shadow-2xl" data-category="{{ $course->category->slug ?? '' }}">
                         <div class="relative h-60 md:h-72 overflow-hidden">
                             <img src="{{ $course->image_path ? asset($course->image_path) : 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80' }}" alt="{{ $course->title }}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000">
                             <div class="absolute top-4 left-4 md:top-6 md:left-6 flex flex-col gap-2 md:gap-3">
-                                <span class="bg-black/90 backdrop-blur-xl px-3 py-1 md:px-4 md:py-1.5 rounded-full text-[9px] md:text-[10px] font-black text-accent uppercase tracking-widest border border-accent/20 shrink-0">{{ $course->category }}</span>
+                                <span class="bg-black/90 backdrop-blur-xl px-3 py-1 md:px-4 md:py-1.5 rounded-full text-[9px] md:text-[10px] font-black text-accent uppercase tracking-widest border border-accent/20 shrink-0">{{ $course->category->name ?? 'Course' }}</span>
                                 @if($course->is_featured)
                                     <span class="bg-accent/20 backdrop-blur-xl px-3 py-1 md:px-4 md:py-1.5 rounded-full text-[9px] md:text-[10px] font-black text-accentLight uppercase tracking-widest border border-accent/40 shrink-0">Best Seller</span>
                                 @endif
@@ -66,7 +67,12 @@
                             </div>
 
                             <a href="{{ route('course.show', $course->slug) }}" class="flex items-center justify-between group/link py-5 md:py-6 border-t @if($themeMode == 'dark') border-gray-800 @else border-gray-100 @endif hover:border-accent/40 mt-auto transition-colors">
-                                <span class="@if($themeMode == 'dark') text-white @else text-gray-900 @endif font-black uppercase tracking-[0.2em] text-[10px] md:text-xs">Explore Module</span>
+                                <div class="flex flex-col">
+                                    <span class="@if($themeMode == 'dark') text-white @else text-gray-900 @endif font-black uppercase tracking-[0.2em] text-[10px] md:text-xs">Explore Module</span>
+                                    @if($course->indian_online_fee || $course->price)
+                                        <span class="text-accent font-serif font-bold text-lg">₹{{ number_format($course->indian_online_fee ?: $course->price) }}</span>
+                                    @endif
+                                </div>
                                 <div class="w-8 h-8 md:w-10 md:h-10 rounded-full @if($themeMode == 'dark') bg-gray-900 @else bg-gray-100 @endif flex items-center justify-center group-hover/link:bg-accent group-hover/link:text-primary-foreground transition-all duration-500 shrink-0">
                                     <svg class="w-3 h-3 md:w-4 md:h-4 group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                                 </div>
@@ -94,17 +100,19 @@
                 @if($themeMode == 'dark')
                     tab.classList.add('bg-black/50', 'border', 'border-gray-800', 'text-gray-400');
                 @else
-                    tab.classList.add('bg-gray-50', 'border', 'border-gray-200', 'text-gray-400');
+                    tab.classList.add('bg-gray-50', 'border', 'border-gray-200', 'text-gray-600');
                 @endif
             });
 
             const activeTab = document.getElementById('tab-' + category);
-            @if($themeMode == 'dark')
-                activeTab.classList.remove('bg-black/50', 'border', 'border-gray-800', 'text-gray-400');
-            @else
-                activeTab.classList.remove('bg-gray-50', 'border', 'border-gray-200', 'text-gray-400');
-            @endif
-            activeTab.classList.add('bg-accent', 'text-primary-foreground', 'shadow-2xl');
+            if(activeTab) {
+                @if($themeMode == 'dark')
+                    activeTab.classList.remove('bg-black/50', 'border', 'border-gray-800', 'text-gray-400');
+                @else
+                    activeTab.classList.remove('bg-gray-50', 'border', 'border-gray-200', 'text-gray-600');
+                @endif
+                activeTab.classList.add('bg-accent', 'text-primary-foreground', 'shadow-2xl');
+            }
 
             // Filter course cards with animation
             cards.forEach(card => {

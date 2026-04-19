@@ -10,19 +10,63 @@
         <div class="container mx-auto px-6 relative z-10">
             <div class="flex flex-col lg:flex-row gap-20 items-center">
                 <div class="w-full lg:w-1/2">
-                    <span class="inline-block px-4 py-1 rounded-full border border-accent text-accent uppercase tracking-widest text-[10px] font-black mb-6">{{ $course->category }} Program</span>
+                    <span class="inline-block px-4 py-1 rounded-full border border-accent text-accent uppercase tracking-widest text-[10px] font-black mb-6">{{ $course->category->name ?? 'Module' }} Program</span>
                     <h1 class="text-5xl md:text-7xl font-serif font-bold @if($themeMode == 'dark') text-white @else text-gray-900 @endif mb-8 leading-tight">{{ $course->title }}</h1>
                     <p class="text-lg md:text-xl text-gray-500 max-w-2xl leading-relaxed mb-10">
                         {{ $course->description }}
                     </p>
-                    <div class="flex flex-wrap gap-8 items-center">
-                        @if($course->price)
-                            <div class="flex items-center gap-4">
-                                <span class="text-gray-600 text-sm uppercase tracking-widest font-black">Fee</span>
-                                <span class="text-3xl font-serif font-bold text-accent">₹{{ number_format($course->price) }}</span>
+                    <div class="mt-10">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <!-- Indian Students -->
+                            <div class="p-6 rounded-3xl @if($themeMode == 'dark') bg-white/5 @else bg-gray-50 @endif border @if($themeMode == 'dark') border-white/10 @else border-gray-100 @endif">
+                                <h4 class="text-[10px] font-black uppercase tracking-widest text-accent mb-4">Indian Students</h4>
+                                <div class="space-y-3">
+                                    @if($course->indian_online_fee)
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-xs text-gray-500 font-bold uppercase tracking-wider">Online</span>
+                                            <span class="text-xl font-serif font-bold @if($themeMode == 'dark') text-white @else text-gray-900 @endif">₹{{ number_format($course->indian_online_fee) }}</span>
+                                        </div>
+                                    @endif
+                                    @if($course->indian_offline_fee)
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-xs text-gray-500 font-bold uppercase tracking-wider">Offline</span>
+                                            <span class="text-xl font-serif font-bold @if($themeMode == 'dark') text-white @else text-gray-900 @endif">₹{{ number_format($course->indian_offline_fee) }}</span>
+                                        </div>
+                                    @endif
+                                    @if(!$course->indian_online_fee && !$course->indian_offline_fee && $course->price)
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-xs text-gray-500 font-bold uppercase tracking-wider">Program Fee</span>
+                                            <span class="text-xl font-serif font-bold @if($themeMode == 'dark') text-white @else text-gray-900 @endif">₹{{ number_format($course->price) }}</span>
+                                        </div>
+                                    @endif
+                                </div>
                             </div>
-                        @endif
-                        <a href="{{ route('contact') }}" class="gold-button text-primary-foreground font-black py-4 px-12 rounded-full uppercase tracking-widest text-sm shadow-2xl">Enroll Now</a>
+
+                            <!-- International Students -->
+                            <div class="p-6 rounded-3xl @if($themeMode == 'dark') bg-white/5 @else bg-gray-50 @endif border @if($themeMode == 'dark') border-white/10 @else border-gray-100 @endif">
+                                <h4 class="text-[10px] font-black uppercase tracking-widest text-accent mb-4">International Students</h4>
+                                <div class="space-y-3">
+                                    @if($course->intl_online_fee)
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-xs text-gray-500 font-bold uppercase tracking-wider">Online</span>
+                                            <span class="text-xl font-serif font-bold @if($themeMode == 'dark') text-white @else text-gray-900 @endif">${{ number_format($course->intl_online_fee) }}</span>
+                                        </div>
+                                    @endif
+                                    @if($course->intl_offline_fee)
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-xs text-gray-500 font-bold uppercase tracking-wider">Offline</span>
+                                            <span class="text-xl font-serif font-bold @if($themeMode == 'dark') text-white @else text-gray-900 @endif">${{ number_format($course->intl_offline_fee) }}</span>
+                                        </div>
+                                    @endif
+                                    @if(!$course->intl_online_fee && !$course->intl_offline_fee)
+                                        <p class="text-[10px] text-gray-500 italic mt-4 uppercase font-bold tracking-widest">Connect with us for International pricing</p>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-10">
+                            <a href="{{ route('contact') }}" class="gold-button text-primary-foreground font-black py-4 px-12 rounded-full uppercase tracking-widest text-sm shadow-2xl inline-block">Enroll Now</a>
+                        </div>
                     </div>
                 </div>
                 <div class="w-full lg:w-1/2 group relative h-[500px] md:h-[600px] border gold-border rounded-[4rem] overflow-hidden transition-all duration-700">

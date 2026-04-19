@@ -20,6 +20,41 @@
         </div>
     </section>
 
+    <!-- Google Reviews Summary Section -->
+    <section class="py-12 @if($themeMode == 'dark') bg-black @else bg-white @endif border-b @if($themeMode == 'dark') border-gray-900 @else border-gray-100 @endif relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-8 bg-gradient-to-r @if($themeMode == 'dark') from-accent/5 to-transparent @else from-accent/5 to-gray-50 @endif p-8 md:p-12 rounded-[3rem] border gold-border shadow-sm">
+                <div class="flex flex-col md:flex-row items-center gap-8 text-center md:text-left">
+                    <!-- Google Brand Icon -->
+                    <div class="w-20 h-20 bg-white rounded-2xl shadow-lg flex items-center justify-center p-4">
+                        <svg viewBox="0 0 24 24" class="w-full h-full"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-1 .67-2.28 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.66l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-center md:justify-start gap-2 mb-2">
+                            <span class="text-4xl md:text-5xl font-serif font-black @if($themeMode == 'dark') text-white @else text-gray-900 @endif leading-none">5.0</span>
+                            <div class="flex flex-col">
+                                <div class="flex gap-1">
+                                    @for($i = 0; $i < 5; $i++)
+                                        <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                    @endfor
+                                </div>
+                                <p class="text-[10px] text-accent font-black uppercase tracking-widest mt-1">Excellent on Google</p>
+                            </div>
+                        </div>
+                        <p class="text-lg @if($themeMode == 'dark') text-gray-400 @else text-gray-600 @endif font-light">
+                            Based on <span class="font-bold @if($themeMode == 'dark') text-white @else text-gray-900 @endif">16 Google reviews</span>
+                        </p>
+                    </div>
+                </div>
+                
+                <a href="https://www.google.com/maps/place/LEARMY+EDUCOACH+INSTITUTE+OF+MUSIC+%26+ACADEMICS/@12.9690526,77.7708609,17z/data=!4m8!3m7!1s0x3bae0d011fecc065:0x3a6754be7d828925!8m2!3d12.9690526!4d77.7708609!9m1!1b1!16s%2Fg%2F11ywbwvr5g?entry=ttu" target="_blank" class="gold-button px-10 py-5 rounded-full text-sm font-black uppercase tracking-[0.2em] shadow-xl group flex items-center gap-3">
+                    Read All Reviews
+                    <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- Achievements Section -->
     <section class="py-20 @if($themeMode == 'dark') bg-primary @else bg-white @endif overflow-hidden">
         <div class="container mx-auto px-6">

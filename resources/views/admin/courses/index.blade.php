@@ -13,6 +13,7 @@
         <table class="w-full text-left">
             <thead>
                 <tr class="border-b border-gray-50">
+                    <th class="pb-6 text-[10px] font-black uppercase tracking-widest text-gray-400">Order</th>
                     <th class="pb-6 text-[10px] font-black uppercase tracking-widest text-gray-400">Course</th>
                     <th class="pb-6 text-[10px] font-black uppercase tracking-widest text-gray-400">Category</th>
                     <th class="pb-6 text-[10px] font-black uppercase tracking-widest text-gray-400">Featured</th>
@@ -23,6 +24,9 @@
             <tbody class="divide-y divide-gray-50">
                 @foreach($courses as $course)
                 <tr class="group">
+                    <td class="py-6">
+                        <span class="font-black text-xs text-accent">{{ $course->order }}</span>
+                    </td>
                     <td class="py-6">
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 rounded-xl border border-gray-100 overflow-hidden shrink-0">
@@ -35,7 +39,7 @@
                         </div>
                     </td>
                     <td class="py-6">
-                        <span class="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest {{ $course->category == 'music' ? 'bg-blue-50 text-blue-600' : 'bg-purple-50 text-purple-600' }}">{{ $course->category }}</span>
+                        <span class="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-purple-50 text-purple-600">{{ $course->category->name ?? 'Uncategorized' }}</span>
                     </td>
                     <td class="py-6">
                         @if($course->is_featured)

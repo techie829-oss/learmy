@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\EnquiryController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 // Public Routes
@@ -39,6 +40,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     
     Route::resource('courses', CourseController::class);
+    Route::resource('categories', CategoryController::class);
     Route::resource('faculty', FacultyController::class);
     Route::resource('events', EventController::class);
     Route::resource('galleries', GalleryController::class);

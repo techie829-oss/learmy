@@ -5,28 +5,41 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Category;
+use App\Models\Course;
 
 class CourseController extends Controller
 {
     public function index()
     {
-        $courses = \App\Models\Course::latest()->paginate(10);
+        $courses = Course::select('courses.*')
+            ->join('categories', 'courses.category_id', '=', 'categories.id')
+            ->orderBy('categories.order', 'asc')
+            ->orderBy('courses.order', 'asc')
+            ->with('category')
+            ->paginate(10);
         return view('admin.courses.index', compact('courses'));
     }
 
     public function create()
     {
-        return view('admin.courses.create');
+        $categories = Category::orderBy('order', 'asc')->get();
+        return view('admin.courses.create', compact('categories'));
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
             'title'       => 'required|string|max:255',
-            'category'    => 'required|in:music,academic',
+            'category_id' => 'required|exists:categories,id',
+            'order'       => 'nullable|integer',
             'description' => 'required|string',
             'features'    => 'nullable|string',
             'price'       => 'nullable|numeric',
+            'indian_online_fee'  => 'nullable|numeric',
+            'indian_offline_fee' => 'nullable|numeric',
+            'intl_online_fee'    => 'nullable|numeric',
+            'intl_offline_fee'   => 'nullable|numeric',
             'start_date'  => 'nullable|date',
             'duration'    => 'nullable|string|max:100',
             'is_featured'      => 'nullable',
@@ -38,6 +51,7 @@ class CourseController extends Controller
 
         $validated['slug'] = \Illuminate\Support\Str::slug($request->title);
         $validated['is_featured'] = $request->has('is_featured');
+        $validated['order'] = $request->order ?? 0;
 
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('courses', 'media');
@@ -45,29 +59,35 @@ class CourseController extends Controller
         }
 
         unset($validated['image']);
-        \App\Models\Course::create($validated);
+        Course::create($validated);
 
         return redirect()->route('admin.courses.index')->with('success', 'Course created successfully!');
     }
 
-    public function show(\App\Models\Course $course)
+    public function show(Course $course)
     {
         return redirect()->route('admin.courses.edit', $course);
     }
 
-    public function edit(\App\Models\Course $course)
+    public function edit(Course $course)
     {
-        return view('admin.courses.edit', compact('course'));
+        $categories = Category::orderBy('order', 'asc')->get();
+        return view('admin.courses.edit', compact('course', 'categories'));
     }
 
-    public function update(Request $request, \App\Models\Course $course)
+    public function update(Request $request, Course $course)
     {
         $validated = $request->validate([
             'title'       => 'required|string|max:255',
-            'category'    => 'required|in:music,academic',
+            'category_id' => 'required|exists:categories,id',
+            'order'       => 'nullable|integer',
             'description' => 'required|string',
             'features'    => 'nullable|string',
             'price'       => 'nullable|numeric',
+            'indian_online_fee'  => 'nullable|numeric',
+            'indian_offline_fee' => 'nullable|numeric',
+            'intl_online_fee'    => 'nullable|numeric',
+            'intl_offline_fee'   => 'nullable|numeric',
             'start_date'  => 'nullable|date',
             'duration'    => 'nullable|string|max:100',
             'is_featured'      => 'nullable',
@@ -79,6 +99,7 @@ class CourseController extends Controller
 
         $validated['slug'] = \Illuminate\Support\Str::slug($request->title);
         $validated['is_featured'] = $request->has('is_featured');
+        $validated['order'] = $request->order ?? 0;
 
         if ($request->hasFile('image')) {
             if ($course->image_path) {
@@ -94,7 +115,7 @@ class CourseController extends Controller
         return redirect()->route('admin.courses.index')->with('success', 'Course updated successfully!');
     }
 
-    public function destroy(\App\Models\Course $course)
+    public function destroy(Course $course)
     {
         if ($course->image_path) {
             Storage::disk('media')->delete(str_replace('media/', '', $course->image_path));

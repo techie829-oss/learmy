@@ -11,10 +11,15 @@ class Course extends Model
     protected $fillable = [
         'title',
         'slug',
-        'category',
+        'category_id',
+        'order',
         'description',
         'features',
         'price',
+        'indian_online_fee',
+        'indian_offline_fee',
+        'intl_online_fee',
+        'intl_offline_fee',
         'start_date',
         'duration',
         'image_path',
@@ -28,4 +33,9 @@ class Course extends Model
         'start_date' => 'date',
         'is_featured' => 'boolean',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
